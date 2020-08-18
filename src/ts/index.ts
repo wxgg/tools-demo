@@ -28,4 +28,4 @@ class B extends A{
 let greeter = new B('');
 
 enum Pone {A = 1, B = 3, C}
-console.log(Pone.C)
+console.log(Pone[2])

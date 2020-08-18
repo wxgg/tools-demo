@@ -1,7 +1,7 @@
 export default {
     input: 'src/rollup/index.js',
     output: {
-      file: 'bundle.js',
+      file: 'lib/bundle.js',
       format: 'cjs'
     }
   };
