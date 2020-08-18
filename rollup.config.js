@@ -1,6 +1,5 @@
 export default {
-    // input: 'rollup-dome/index.js',
-    input: 'src/index.ts',
+    input: 'src/rollup/index.js',
     output: {
       file: 'bundle.js',
       format: 'cjs'
