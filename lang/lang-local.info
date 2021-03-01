@@ -1,0 +1,10 @@
+{
+  "新增": {
+    "id": "js.lang.massage.1",
+    "defaultMessage": "新增",
+    "items": [
+      { "filePath": "", "line": 112 },
+      { "filePath": "", "line": 150 }
+    ]
+  }
+}

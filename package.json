@@ -5,11 +5,19 @@
   "main": "index.js",
   "scripts": {
     "rollup": "rollup -c",
-    "start": "webpack --config webpack.config.js",
-    "test": "mocha"
+    "start": "webpack-dev-server --config  webpack.config.js",
+    "start2": "webpack-dev-server --config  webpack.config1.js",
+    "webpack": "webpack-dev-server --config  webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "build2": "webpack --config webpack.config1.js",
+    "test": "mocha",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --cache",
+    "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx --cache --fix",
+    "lint:git": "git diff --cached --name-only --diff-filter=ACM | grep '\\.[tj]sx\\?$' | xargs eslint --quiet"
   },
   "husky": {
     "hooks": {
+      "pre-commit": "npm run lint:git",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -18,8 +26,34 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^9.1.1",
     "@commitlint/travis-cli": "^9.1.1",
+    "css-loader": "^5.0.0",
+    "html-webpack-plugin": "^4.4.1",
     "husky": "^4.2.5",
     "mocha": "^8.1.1",
-    "rollup": "^2.26.3"
+    "rollup": "^2.26.3",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "axios": "^0.20.0",
+    "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "faker": "^5.1.0",
+    "fixed-data-table-2": "^1.1.1",
+    "mtl-js-sdk": "^5.0.35",
+    "path-to-regexp": "^6.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.21",
+    "react-tooltip": "^4.2.10",
+    "react-virtualized": "^9.22.2",
+    "urlencode": "^1.1.0"
   }
 }
