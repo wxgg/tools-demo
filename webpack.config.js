@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	mode: "development",
-	entry: "./src/index.js",
+	entry: "./src/thunder-page/index.js",
 	// entry: './test/index.js',
 	devtool: "source-map",
 	output: {
@@ -29,6 +29,16 @@ module.exports = {
 				exclude: /node_modules/,
 				use: ["babel-loader"],
 			},
+			{
+				test: /\.less$/,
+				use: ['style-loader', 'css-loader','postcss-loader', 'less-loader']
+			}, {
+				test: /\.less$/,
+				use: ['style-loader', 'css-loader','postcss-loader', 'less-loader']
+			}, {
+				test: /\.css$/,
+				use:  ['style-loader', 'css-loader']
+			}
 		],
 	},
 	plugins: [
@@ -37,7 +47,7 @@ module.exports = {
 			//预览时使用
 			template: path.resolve(__dirname, "./template", "index.html"), //模板
 			filename: "index.html",
-			chunks: ["index"],
+			// chunks: ["index"],
 			inject: true, //允许插件修改哪些内容，包括head与body
 			hash: true, //是否添加hash值
 			minify: {
