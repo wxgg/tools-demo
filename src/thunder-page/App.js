@@ -6,7 +6,7 @@ const { Option } = Select;
 function thunder(urlList, vType) {
 	let taskLists = urlList.map((item) => {
 		return {
-			name: `${item.index}-${item.name}.${item.url
+			name: `${item.name}.${item.url
 				.split("/")
 				.pop()
 				.split(".")
@@ -14,6 +14,35 @@ function thunder(urlList, vType) {
 			url: item.url,
 			dir: "",
 		};
+	}); 
+	thunderLink.newTask({
+		downloadDir: "",
+		installFile: "",
+		taskGroupName: vType,
+		tasks: taskLists,
+		excludePath: "",
+		createShortcut: {
+			name: "测试",
+			targetFile: "thunder9/OnlineInstall9.1.49.1060xl.exe",
+			runParams: "a",
+		},
+		userAgent: "My-User-Agent",
+		threadCount: 10,
+		referer: "",
+	});
+}
+
+function thunder2(urlList, vType) {
+	let taskLists = [];
+	urlList.forEach(item => {
+		let pics = JSON.parse(item.pics)
+		pics.forEach(url => {
+			taskLists.push({
+				url: url,
+				dir: `${item.pname}`,
+			})
+		})
+
 	});
 	thunderLink.newTask({
 		downloadDir: "",
@@ -51,15 +80,25 @@ export default function App(props) {
 				<Col
 					span={3}
 					style={{ margin: "10px" }}
-					onClick={() => {
-						try {
-							let json = JSON.parse(jsonText);
-							console.log(json);
-							thunder(json, vType);
-						} catch (e) {}
-					}}
 				>
-					<Button type="primary">download</Button>
+					<Button type="primary" 
+							onClick={() => {
+								try {
+									let json = JSON.parse(jsonText);
+									console.log(json);
+									thunder(json, vType);
+								} catch (e) {}
+							}}
+					>download</Button>
+						<Button type="primary" 
+							onClick={() => {
+								try {
+									let json = JSON.parse(jsonText);
+									console.log(json);
+									thunder2(json, vType);
+								} catch (e) {}
+							}}
+					>download2</Button>
 				</Col>
 				<Col span={24}>
 					<CodeEdit onChange={(newValue) => setJsonText(newValue)} />
